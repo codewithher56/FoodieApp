@@ -121,3 +121,30 @@ function placeOrder() {
 
 </body>
 </html>
+
+    <input type="text" id="search" placeholder="Search food..." onkeyup="searchFood()">
+
+
+
+function searchFood() {
+
+    let input =
+        document.getElementById("search").value.toLowerCase();
+
+    let foods =
+        document.getElementsByClassName("food");
+
+    for(let i=0; i<foods.length; i++) {
+
+        let text =
+            foods[i].innerText.toLowerCase();
+
+        if(text.includes(input)) {
+            foods[i].style.display = "block";
+        }
+        else {
+            foods[i].style.display = "none";
+        }
+    }
+}
+
