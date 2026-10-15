@@ -1,0 +1,81 @@
+﻿name: FoodieApp CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+
+  build-test-package:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Build application
+        run: |
+          echo "Building FoodieApp..."
+          mkdir -p build
+          cp index.html build/
+          cp README.md build/
+          echo "Build completed successfully."
+
+      - name: Run tests
+        run: |
+          echo "Running tests..."
+          test -f index.html
+          test -f README.md
+          echo "All tests passed."
+
+      - name: Package application
+        run: |
+          mkdir -p package
+          cp -r build/* package/
+          tar -czf foodieapp.tar.gz package
+          echo "Application packaged successfully."
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: foodieapp-build
+          path: build/
+
+  deploy:
+
+    needs: build-test-package
+
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
