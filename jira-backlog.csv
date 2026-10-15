@@ -1,0 +1,19 @@
+﻿Summary,Description,Issue Type,Priority,Story Points
+"View food menu","As a customer, I want to view available food items so that I can choose what to order.","Story","Highest",5
+"Search food","As a customer, I want to search for food items so that I can quickly find my desired food.","Story","High",3
+"Add food to cart","As a customer, I want to add food items to my cart so that I can order multiple items.","Story","Highest",5
+"Remove food from cart","As a customer, I want to remove items from my cart so that I can modify my order.","Story","Medium",3
+"Place order","As a customer, I want to place an order so that the selected food can be delivered to me.","Story","Highest",8
+"Order confirmation","As a customer, I want to receive order confirmation so that I know my order was successfully placed.","Story","High",3
+"Track order","As a customer, I want to track my order so that I know the current delivery status.","Story","High",5
+"Cancel order","As a customer, I want to cancel an order so that I can stop an unwanted order.","Story","Medium",3
+"Customer login","As a customer, I want to log in so that my account and orders are secure.","Story","High",5
+"Payment","As a customer, I want to pay online so that I can complete my order.","Story","Highest",8
+"Restaurant management","As a restaurant owner, I want to manage food items so that I can keep the menu updated.","Story","Medium",5
+"Delivery status","As a delivery partner, I want to update delivery status so that customers can track their orders.","Story","Medium",5
+"Admin dashboard","As an administrator, I want to view orders so that I can monitor the system.","Story","Low",5
+"Customer feedback","As a customer, I want to provide feedback so that I can rate my food and delivery experience.","Story","Low",3
+"Order history","As a customer, I want to view previous orders so that I can check my past purchases.","Story","Low",3
+"Performance testing","As an administrator, I want the application to respond quickly so that users have a good experience.","Story","Medium",5
+"Security testing","As an administrator, I want user data to be secure so that customer information is protected.","Story","High",5
+"Application deployment","As a developer, I want to deploy the application so that customers can access it online.","Story","Highest",5
