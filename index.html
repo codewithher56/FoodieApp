@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <title>FoodieApp - Food Delivery</title>
     <style>
@@ -49,102 +50,101 @@
 
 <body>
 
-<header>
-    <h1>🍔 FoodieApp</h1>
-    <p>Online Food Delivery System</p>
-</header>
+    <header>
+        <h1>🍔 FoodieApp</h1>
+        <p>Online Food Delivery System</p>
+    </header>
 
-<div class="container">
+    <div class="container">
 
-    <h2>Food Menu</h2>
+        <h2>Food Menu</h2>
 
-    <div class="food">
-        <h3>Pizza</h3>
-        <p>Cheese Pizza - ₹250</p>
-        <button onclick="addToCart('Pizza',250)">Add to Cart</button>
+        <input type="text" id="search" placeholder="Search food..." onkeyup="searchFood()">
+
+        <div class="food">
+            <h3>Pizza</h3>
+            <p>Cheese Pizza - ₹250</p>
+            <button onclick="addToCart('Pizza',250)">Add to Cart</button>
+        </div>
+
+        <div class="food">
+            <h3>Burger</h3>
+            <p>Cheese Burger - ₹150</p>
+            <button onclick="addToCart('Burger',150)">Add to Cart</button>
+        </div>
+
+        <div class="food">
+            <h3>Biryani</h3>
+            <p>Chicken Biryani - ₹220</p>
+            <button onclick="addToCart('Biryani',220)">Add to Cart</button>
+        </div>
+
+        <div class="food">
+            <h3>Sandwich</h3>
+            <p>Veg Sandwich - ₹120</p>
+            <button onclick="addToCart('Sandwich',120)">Add to Cart</button>
+        </div>
+
+        <div id="cart">
+            <h2>🛒 Cart</h2>
+            <p id="cartItems">No items added.</p>
+            <h3>Total: ₹<span id="total">0</span></h3>
+            <button onclick="placeOrder()">Place Order</button>
+        </div>
+
     </div>
 
-    <div class="food">
-        <h3>Burger</h3>
-        <p>Cheese Burger - ₹150</p>
-        <button onclick="addToCart('Burger',150)">Add to Cart</button>
-    </div>
+    <script>
 
-    <div class="food">
-        <h3>Biryani</h3>
-        <p>Chicken Biryani - ₹220</p>
-        <button onclick="addToCart('Biryani',220)">Add to Cart</button>
-    </div>
+        let cart = [];
+        let total = 0;
 
-    <div class="food">
-        <h3>Sandwich</h3>
-        <p>Veg Sandwich - ₹120</p>
-        <button onclick="addToCart('Sandwich',120)">Add to Cart</button>
-    </div>
+        function addToCart(name, price) {
+            cart.push(name);
+            total += price;
 
-    <div id="cart">
-        <h2>🛒 Cart</h2>
-        <p id="cartItems">No items added.</p>
-        <h3>Total: ₹<span id="total">0</span></h3>
-        <button onclick="placeOrder()">Place Order</button>
-    </div>
+            document.getElementById("cartItems").innerHTML =
+                cart.join(", ");
 
-</div>
+            document.getElementById("total").innerHTML =
+                total;
+        }
 
-<script>
+        function placeOrder() {
 
-let cart = [];
-let total = 0;
+            if (cart.length === 0) {
+                alert("Please add food to cart first.");
+                return;
+            }
 
-function addToCart(name, price) {
-    cart.push(name);
-    total += price;
+            alert("Order placed successfully!");
+        }
 
-    document.getElementById("cartItems").innerHTML =
-        cart.join(", ");
 
-    document.getElementById("total").innerHTML =
-        total;
-}
+        function searchFood() {
 
-function placeOrder() {
+            let input =
+                document.getElementById("search").value.toLowerCase();
 
-    if(cart.length === 0) {
-        alert("Please add food to cart first.");
-        return;
-    }
+            let foods =
+                document.getElementsByClassName("food");
 
-    alert("Order placed successfully!");
-}
+            for (let i = 0; i < foods.length; i++) {
 
-</script>
+                let text =
+                    foods[i].innerText.toLowerCase();
+
+                if (text.includes(input)) {
+                    foods[i].style.display = "block";
+                }
+                else {
+                    foods[i].style.display = "none";
+                }
+            }
+        }
+
+    </script>
 
 </body>
+
 </html>
-
-    <input type="text" id="search" placeholder="Search food..." onkeyup="searchFood()">
-
-
-
-function searchFood() {
-
-    let input =
-        document.getElementById("search").value.toLowerCase();
-
-    let foods =
-        document.getElementsByClassName("food");
-
-    for(let i=0; i<foods.length; i++) {
-
-        let text =
-            foods[i].innerText.toLowerCase();
-
-        if(text.includes(input)) {
-            foods[i].style.display = "block";
-        }
-        else {
-            foods[i].style.display = "none";
-        }
-    }
-}
-
