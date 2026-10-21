@@ -1,0 +1,31 @@
+name: FoodieApp CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Validate FoodieApp
+        run: |
+          test -f index.html
+          echo "index.html found successfully"
+
+      - name: Build Docker image
+        run: docker build -t foodieapp .
+
+      - name: Validate Docker Compose
+        run: docker compose config
+
+      - name: Pipeline completed
+        run: echo "FoodieApp CI/CD pipeline completed successfully"
