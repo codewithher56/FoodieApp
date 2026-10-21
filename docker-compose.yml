@@ -1,0 +1,7 @@
+services:
+  foodieapp:
+    build: .
+    container_name: foodieapp
+    ports:
+      - "8080:80"
+    restart: unless-stopped
